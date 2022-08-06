@@ -6,5 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projeto OO</title>
   </head>
-  <body></body>
+  <body>
+    <script type="module">
+      import { Storage } from "./src/libs/Storage.js";
+
+      const usuarioStorage = new Storage("usuario");
+      usuarioStorage.save({
+        nome: "Gedeon",
+        email: "gedeon@gmail.com",
+        foto: "gedeon.png",
+      });
+
+      usuarioStorage.save({
+        nome: "Ramiro",
+        email: "ramiro@gmail.com",
+        foto: "ramiro.png",
+      });
+    </script>
+  </body>
 </html>
