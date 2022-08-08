@@ -36,7 +36,23 @@ export class Storage {
       .map(([_, entryKey]) => JSON.parse(entryKey));
   }
 
-  async findOneAndUpdate(id, data) {}
+  async findOneAndUpdate(id, data) {
+    const item = await this.findOne(id);
+
+    if (!item) {
+      throw new Error(`Registro ${id} não encontrado em ${this.table}`);
+    }
+
+    const newData = {
+      ...item,
+      ...data,
+      id: item.id,
+    };
+
+    this.#storage.setItem(this.#getKey(id), JSON.stringify(newData));
+
+    return this.findOne(id);
+  }
 
   async remove(id) {}
 
