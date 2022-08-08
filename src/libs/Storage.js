@@ -30,7 +30,11 @@ export class Storage {
     return JSON.parse(this.#storage.getItem(this.#getKey(id)));
   }
 
-  async findAll() {}
+  async findAll() {
+    return Object.entries(this.#storage)
+      .filter(([entryKey]) => entryKey.startsWith(this.table))
+      .map(([_, entryKey]) => JSON.parse(entryKey));
+  }
 
   async findOneAndUpdate(id, data) {}
 
