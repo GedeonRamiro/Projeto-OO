@@ -1,8 +1,10 @@
 export class Storage {
   #table;
+  #storage;
 
   constructor(table) {
     this.#table = table;
+    this.#storage = window.localStorage;
   }
 
   get table() {
@@ -15,22 +17,18 @@ export class Storage {
 
   async save(data) {
     const id = this.#generateId();
-    const key = `${this.#table}-${id}`;
 
     const newData = {
       id,
       ...data,
     };
 
-    localStorage.setItem(key, JSON.stringify(newData));
+    this.#storage.setItem(this.#getKey(id), JSON.stringify(newData));
   }
 
-  #generateId() {
-    const gen = () => Math.floor(Date.now() * Math.random()).toString(36);
-    return `${gen()}-${gen()}-${gen()}`;
+  async findOne(id) {
+    return JSON.parse(this.#storage.getItem(this.#getKey(id)));
   }
-
-  async findOne(id) {}
 
   async findAll() {}
 
@@ -39,4 +37,13 @@ export class Storage {
   async remove(id) {}
 
   async removeAll() {}
+
+  #getKey(id) {
+    return `${this.#table}-${id}`;
+  }
+
+  #generateId() {
+    const gen = () => Math.floor(Date.now() * Math.random()).toString(36);
+    return `${gen()}-${gen()}-${gen()}`;
+  }
 }
