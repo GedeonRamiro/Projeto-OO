@@ -54,7 +54,10 @@ export class Storage {
     return this.findOne(id);
   }
 
-  async remove(id) {}
+  async remove(id) {
+    this.#storage.removeItem(this.#getKey(id));
+    return true;
+  }
 
   async removeAll() {}
 
