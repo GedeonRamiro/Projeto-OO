@@ -59,7 +59,10 @@ export class Storage {
     return true;
   }
 
-  async removeAll() {}
+  async removeAll() {
+    const items = await this.findAll();
+    return Promise.all(items.map((item) => this.remove(item.id)));
+  }
 
   #getKey(id) {
     return `${this.#table}-${id}`;
