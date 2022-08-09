@@ -24,6 +24,7 @@ export class Storage {
     };
 
     this.#storage.setItem(this.#getKey(id), JSON.stringify(newData));
+    return newData;
   }
 
   async findOne(id) {
