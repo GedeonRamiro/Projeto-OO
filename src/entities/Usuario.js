@@ -4,7 +4,7 @@ export class Usuario {
   #email;
   #foto;
 
-  constructor({ id, nome, email, foto }) {
+  constructor({ id, nome, email, foto } = {}) {
     this.#id = id;
     this.#nome = nome;
     this.#email = email;
