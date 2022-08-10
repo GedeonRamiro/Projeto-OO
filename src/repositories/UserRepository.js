@@ -25,4 +25,12 @@ export class UserRepository {
   async update(user) {
     return this.#LStorage.findOneAndUpdate(user.id, user.toObject());
   }
+
+  async remove(id) {
+    return this.#LStorage.remove(id);
+  }
+
+  async removeAll() {
+    return this.#LStorage.removeAll();
+  }
 }
