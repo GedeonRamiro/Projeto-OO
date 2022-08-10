@@ -1,5 +1,5 @@
-import { User } from "../entities/User.js";
 import { Repository } from "./Repository.js";
+import { User } from "../entities/User.js";
 
 export class UserRepository extends Repository {
   constructor(Storage) {
